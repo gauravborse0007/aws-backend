@@ -1,4 +1,4 @@
-export async function pushRepo(){
-    console.log("pushed the repo");
+export async function pullRepo(){
+    console.log("pull the repo");
     console.log("Feature is unavilable")
 }
