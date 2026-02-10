@@ -122,7 +122,7 @@ export const fetchRepositoryByName = async (req, res) => {
 
 // This 4 functionality will be access by only the owner, if owner is login
 export const fetchRepositoriesForCurrentUser = async (req, res) => {
-    const userId = req.params.userID;
+    const userId = req.params.userId;
 
     if (!mongoose.Types.ObjectId.isValid(userId)) {
         return res.status(400).json({ error: "Invalid or missing userId" });
@@ -133,11 +133,7 @@ export const fetchRepositoriesForCurrentUser = async (req, res) => {
             .populate("owner")
             .populate("issues");
 
-        if (!repositories || repositories.length == 0) {
-            return res.status(404).json({ error: "User repository not found" })
-        }
-
-        res.json(repositories);
+        res.status(200).json(repositories);
 
     } catch (error) {
         console.error("Error in fecthing the repositories for user ", error.message);
